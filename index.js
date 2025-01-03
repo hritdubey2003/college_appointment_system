@@ -11,11 +11,14 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/', () => { <h1>Home Page</h1>} )
+app.get('/', (req, res) => {
+    res.send('<h1>Home Page</h1>');
+});
+
 app.use('/students', studentauth );
 app.use('/professors', professorauth );
 
-app.listen(3000 || process.env.PORT , () => {
+app.listen( process.env.PORT , () => {
     console.log(`Server is running on port ${process.env.PORT}`);
 })
 
