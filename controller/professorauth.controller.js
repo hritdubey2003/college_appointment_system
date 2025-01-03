@@ -133,36 +133,33 @@ export const deleteTimeSlot = async (req, res) => {
             return res.status(400).json({ message: "Please fill all the fields!" });
         }
 
-        // Find the professor based on the ID from the token
+        
         const professor = await Professor.findById(req.user._id);
         if (!professor) {
             return res.status(401).json({ message: "You are not authorized to delete availability!" });
         }
 
-        // Format the time slot as a string
+        
         const time_slot = `${startTime}-${endTime}`;
 
-        // Find the existing availability for the professor on the given day
+        
         const existingAvailability = await Availability.findOne({
             professor: professor._id,
-            date: day // Searching for the availability based on the day
+            date: day 
         });
 
         if (!existingAvailability) {
             return res.status(404).json({ message: "No availability found for this day!" });
         }
 
-        // Check if the time slot exists in the professor's availability
         const index = existingAvailability.time_slot.indexOf(time_slot);
         
         if (index === -1) {
             return res.status(404).json({ message: "This time slot does not exist!" });
         }
 
-        // Remove the time slot from the array
         existingAvailability.time_slot.splice(index, 1);
 
-        // Save the updated availability document
         await existingAvailability.save();
 
         return res.status(200).json({ message: "Time slot deleted successfully!", availability: existingAvailability });
