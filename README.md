@@ -292,11 +292,11 @@ Authenticates a professor and generates access and refresh tokens.
 
 ---
 
-### 3. **POST /professors/createAvailability**
+### 3. **POST /professors/setAvailability**
 Creates availability for a professor to accept student appointments.
 
 #### Request:
-- **URL:** `/professors/createAvailability`
+- **URL:** `/professors/setAvailability`
 - **Method:** POST
 - **Content-Type:** `application/json`
 - **Authentication:** Requires professor authentication (JWT).
@@ -305,7 +305,8 @@ Creates availability for a professor to accept student appointments.
 ```json
 {
   "date": "2025-01-10",
-  "timeSlots": ["10:00 AM - 11:00 AM", "11:00 AM - 12:00 PM"]
+  "startTime": "12:00",
+  "endTime": "13:00"
 }
 ```
 
@@ -342,7 +343,8 @@ Deletes a specific time slot from a professor's availability.
 ```json
 {
   "availabilityId": "avail12345",
-  "timeSlot": "10:00 AM - 11:00 AM"
+  "startTime": "10:00",
+  "endTime": "11:00"
 }
 ```
 
