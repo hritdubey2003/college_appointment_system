@@ -342,7 +342,7 @@ Deletes a specific time slot from a professor's availability.
 #### Request Body:
 ```json
 {
-  "availabilityId": "avail12345",
+  "day": "2025-01-10",
   "startTime": "10:00",
   "endTime": "11:00"
 }
