@@ -304,7 +304,7 @@ Creates availability for a professor to accept student appointments.
 #### Request Body:
 ```json
 {
-  "date": "2025-01-10",
+  "day": "2025-01-10",
   "startTime": "12:00",
   "endTime": "13:00"
 }
